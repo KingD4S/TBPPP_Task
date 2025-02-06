@@ -2,6 +2,7 @@ import React, { useEffect,useState } from "react";
 import axios from "axios";
 import { use } from "react";
 
+import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 function Home() {
   const [todos, setTodos] = useState([]);
@@ -83,7 +84,19 @@ function Home() {
       setError("Failed to Delete Todo");
     }
   };
-
+  const navigateTo = useNavigate();
+  const logout = async () => {
+    try {
+      await axios.get("http://localhost:4001/user/logout", {
+        withCredentials: true,
+      });
+      toast.success("User logged out successfully");
+      navigateTo("/login");
+      localStorage.removeItem("jwt");
+    } catch (error) {
+      toast.error("Error logging out");
+    }
+  };
   const remainingTodos = todos.filter((todo) => !todo.completed).length;
 
   return (

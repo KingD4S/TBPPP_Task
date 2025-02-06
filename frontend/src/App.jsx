@@ -2,7 +2,7 @@ import React from "react";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes,Navigate } from "react-router-dom";
 import PageNotFound from "./components/PageNotFound";
 import { Toaster } from "react-hot-toast";
 
